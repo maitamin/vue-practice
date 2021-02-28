@@ -7,6 +7,11 @@ Vue.component('LikeNumber', LikeNumber);
 Vue.filter("upperCase", function(value) {
   return value.toUpperCase();
 });
+Vue.mixin({
+  created() {
+    console.log("global mixin");
+  },
+});
 // ディレクティブのグローバル登録
 // Vue.directive("border", function(el, binding) {
 //   // bindとupdateに定義したのと同等になる。
