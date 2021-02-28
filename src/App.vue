@@ -1,40 +1,35 @@
 <template>
   <div>
     <like-header>
-      <h2>みなさん</h2>
-      <template #[title]="slotProps">
-        <h2>こんにちわ</h2>
-        <h2>{{ slotProps.user.firstName }}</h2>
-      </template>
       <h3>はじめまして</h3>
-      <template v-slot:number>
-        <p>{{ number }}</p>
-      </template>
     </like-header>
-    <!-- <like-header header-text="hello">
-      <h1>トータルのいいね数</h1>
-      <h2>{{ number }}</h2>
-    </like-header> -->
-    <likeNumber :totalNumber="number" @my-click="incrementNumber"></likeNumber>
-    <like-number :total-number="number"></like-number>
-    <like-number></like-number>
     <!-- これが一番の推奨系ぽい（要素はキャメル、属性はケバブ、イベントはケバブ） -->
     <likeNumber :total-number="number" @my-click="incrementNumber"></likeNumber>
+
+    <button @click="currentComponent='Home'">Home</button>
+    <button @click="currentComponent='About'">About</button>
+    <keep-alive>
+      <component :is="currentComponent"></component>
+    </keep-alive>
   </div>
 </template>
 
 <script>
 import LikeHeader from './components/LikeHeader';
+import About from './components/About';
+import Home from './components/Home';
 
 export default {
   data() {
     return {
       number: 14,
-      title: "title",
+      currentComponent: "Home"
     };
   },
   components: {
-    LikeHeader
+    LikeHeader,
+    About,
+    Home,
   },
   methods: {
     incrementNumber(value) {
