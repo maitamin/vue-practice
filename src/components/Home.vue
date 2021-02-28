@@ -1,9 +1,19 @@
 <template>
-  <p v-border:solid.round.shadow ="{width: '5px', color: 'brown'}">Home</p>
+  <div>
+    <p v-border:solid.round.shadow ="{width: '5px', color: 'brown'}">Home</p>
+    <h2>{{ title | upperCase }}</h2>
+    <p>{{ subTitle | upperCase }}</p>
+  </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      title: "Welcom to Tokyo",
+      subTitle: "Tokyo is a greate city",
+    }
+  },
   directives: {
     border(el, binding/*, vnode, oldVnode*/) {
       // bindとupdateに定義したのと同等になる。
